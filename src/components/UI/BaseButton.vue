@@ -1,8 +1,10 @@
 <template>
-  <button v-if="!link" class="button" :type="type">
+  <button @click="click" v-if="!link" class="button" :type="type">
     <slot></slot>
   </button>
-  <router-link v-if="link" class="link"></router-link>
+  <router-link v-if="link" class="link" :to="to">
+    <slot></slot>
+  </router-link>
 </template>
 
 <script>
@@ -23,6 +25,10 @@ export default {
       required: false,
       default: "button",
     },
+    click: {
+      type: Function,
+      required: false,
+    },
   },
 };
 </script>
@@ -30,6 +36,8 @@ export default {
 <style lang="scss" scoped>
 .button,
 .link {
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
   margin-top: 1rem;
   text-decoration: none;
   padding: 0.5rem 1.5rem;

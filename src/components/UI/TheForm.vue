@@ -48,6 +48,8 @@
 
 <script>
 export default {
+  props: ["competitors"],
+  emits: ["send-data"],
   data() {
     return {
       playerName: {
@@ -60,14 +62,14 @@ export default {
       },
       formIsValid: true,
       error: false,
-      competitors: [
-        { id: 1, name: "Grzechu", team: "Real" },
-        { id: 2, name: "Doncia", team: "Barka" },
-        { id: 3, name: "Luki", team: "Ten tempy chuj za Arsenalem" },
-        { id: 4, name: "Mucha", team: "Chuj wie" },
-        { id: 5, name: "Kacper", team: "Zwinny jak polamany wengosz" },
-        { id: 5, name: "Mosiu", team: "Haczy nosem o poprzeczke" },
-      ],
+      // competitors: [
+      // { id: 1, name: "Grzechu", team: "Real" },
+      // { id: 2, name: "Doncia", team: "Barka" },
+      // { id: 3, name: "Luki", team: "Ten tempy chuj za Arsenalem" },
+      // { id: 4, name: "Mucha", team: "Chuj wie" },
+      // { id: 5, name: "Kacper", team: "Zwinny jak polamany wengosz" },
+      // { id: 5, name: "Mosiu", team: "Haczy nosem o poprzeczke" },
+      // ],
     };
   },
   methods: {
@@ -93,9 +95,6 @@ export default {
 
     addPlayer() {
       this.validateForm();
-      // console.log(this.playerName.val.length);
-      // console.log(/^[a-z A-Z]+$/.test(this.playerTeam.val));
-
       if (!this.formIsValid) {
         return;
       }
@@ -105,41 +104,29 @@ export default {
         name: this.playerName.val,
         team: this.playerTeam.val,
       };
-      this.competitors.push(player);
-      // localStorage.setItem("competitors", this.competitors);
-      // console.log(this.competitors);
-      // const grajek = localStorage.getItem("competitors");
-      // console.log(grajek);
-      this.$emit("send-data", this.competitors);
+      // this.competitors.push(player);
+      // console.log(player);
+      this.$emit("send-data", player);
+      // this.competitors = [];
       this.playerName.val = "";
       this.playerTeam.val = "";
     },
 
     checkValue() {
-      // console.log("siems");
-      // console.log(/^[a-z A-Z]+$/.test(this.playerName.val));
-      // console.log(!this.playerTeam.val === "");
       if (
         this.playerName.val != "" &&
         this.playerName.val.length >= 3 &&
         /^[a-z A-Z]+$/.test(this.playerName.val)
       ) {
-        // console.log("sprawdzone");
-        // console.log(this.playerName.isValid);
         this.playerName.isValid = true;
-        // console.log(this.playerName.isValid);
       }
       if (
         this.playerTeam.val != "" &&
         this.playerTeam.val.length >= 3 &&
         /^[a-z A-Z]+$/.test(this.playerTeam.val)
       ) {
-        // console.log("sprawdzone");
-        // console.log(this.playerTeam.isValid);
         this.playerTeam.isValid = true;
-        // console.log(this.playerTeam.isValid);
       }
-      // console.log("siems");
     },
   },
 };
@@ -156,7 +143,6 @@ export default {
     flex-direction: column;
     margin: 0 auto;
     max-width: 30rem;
-    // background-color: seagreen;
     @media (min-width: 500px) {
       flex-direction: row;
     }
@@ -173,7 +159,6 @@ export default {
   &__input {
     background-color: rgba(255, 255, 255, 0.2);
     text-align: center;
-    // font-size: ;
     border: 0.1rem solid white;
     caret-color: white;
     color: white;
