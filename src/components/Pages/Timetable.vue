@@ -1,3 +1,0 @@
-<template>
-  terminarz spotkań
-</template>

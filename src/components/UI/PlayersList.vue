@@ -20,7 +20,7 @@
     </ul>
     <div class="players__buttons">
       <div class="players__button">
-        <base-button link to="/timetable">Zacznij grę!</base-button>
+        <base-button link to="/game">Zacznij grę!</base-button>
       </div>
       <div class="players__button">
         <base-button type="button" :click="resetList"

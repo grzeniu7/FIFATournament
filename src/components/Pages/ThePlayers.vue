@@ -37,6 +37,23 @@ export default {
       console.log(index);
       this.competitors.splice(index, 1);
     },
+    addPlayers() {
+      this.$store.dispatch("addPlayersToState", this.competitors);
+    },
+    test() {
+      console.log(this.testing);
+    },
+  },
+  computed: {
+    testing() {
+      return this.$store.getters.testing;
+    },
+  },
+  mounted() {
+    this.test();
+  },
+  beforeUnmount() {
+    this.addPlayers();
   },
 };
 </script>
