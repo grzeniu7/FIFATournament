@@ -1,6 +1,9 @@
 <template>
   <base-page>
-    <the-form @send-data="getData" :competitors="this.competitors"></the-form>
+    <player-form
+      @send-data="getData"
+      :competitors="this.competitors"
+    ></player-form>
     <players-list
       v-if="this.competitorsExist"
       :competitors="this.competitors"
@@ -11,10 +14,10 @@
 </template>
 
 <script>
-import TheForm from "../UI/TheForm.vue";
+import PlayerForm from "../UI/PlayerForm.vue";
 import PlayersList from "../UI/PlayersList.vue";
 export default {
-  components: { TheForm, PlayersList },
+  components: { PlayerForm, PlayersList },
   data() {
     return {
       competitors: [],
@@ -40,9 +43,9 @@ export default {
     addPlayers() {
       this.$store.dispatch("addPlayersToState", this.competitors);
     },
-    test() {
-      console.log(this.testing);
-    },
+    // test() {
+    //   console.log(this.testing);         //store testing
+    // },
   },
   computed: {
     testing() {
