@@ -7,7 +7,6 @@
       v-for="(pair, issue) in tournamentPairs[index]"
       class="timetable__item"
     >
-      <div v-if="gamesPlayed.gameIsOver">Działaaaa</div>
       <game-form
         :index="index"
         :issue="issue"

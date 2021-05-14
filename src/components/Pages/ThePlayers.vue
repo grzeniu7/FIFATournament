@@ -52,9 +52,9 @@ export default {
       return this.$store.getters.testing;
     },
   },
-  mounted() {
-    this.test();
-  },
+  // mounted() {
+  //   this.test();
+  // },
   beforeUnmount() {
     this.addPlayers();
   },

@@ -39,6 +39,7 @@ export default {
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   text-decoration: none;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
