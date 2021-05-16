@@ -63,9 +63,9 @@ export default {
     players() {
       return this.$store.getters.players;
     },
-    gamesPlayed() {
-      return this.$store.getters.gamesPlayed;
-    },
+    // gamesPlayed() {
+    //   return this.$store.getters.gamesPlayed;
+    // },
   },
   methods: {
     sprawdz() {
@@ -101,7 +101,7 @@ export default {
       const playersList = this.players;
       // console.log(playersList);
       if (playersList.length % 2 == 1) {
-        playersList.push(null);
+        playersList.push(null); // tutaj jest problem z wyswietlaniem terminarza jezeli dodamy jako brakujacego parzystego gracza null -> wywala, ze 'nie mozna odczytac wartosci team of null' przy renderowaniu terminarza => albo zmienic null na jakis pusty obiekt z wlasciwoscia 'team', albo zablokowac mozliwosc gry, jezeli liczba graczy jest nieparzysta
       }
 
       const playerCount = playersList.length;

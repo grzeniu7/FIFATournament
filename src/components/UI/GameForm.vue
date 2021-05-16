@@ -12,7 +12,7 @@
       <p class="result__item result__item-score">{{ awayResult }}</p>
     </div>
   </div>
-  <form class="form" @submit.prevent="clicked(index, issue)" v-else>
+  <form class="form" @submit.prevent="submitGameForm(index, issue)" v-else>
     <div class="form__container">
       <div class="form__item form__item-reversed">
         <label for="home" class="form__team">{{ pair.home.team }}</label>
@@ -56,13 +56,15 @@ export default {
       awayResult: null,
       formIsValid: true,
       gameIsOver: false,
+      homeTeamPoints: null,
+      awayTeamPoints: null,
     };
   },
-  computed: {
-    gamesPlayed() {
-      return this.$store.getters.gamesPlayed;
-    },
-  },
+  // computed: {
+  //   gamesPlayed() {
+  //     return this.$store.getters.gamesPlayed;
+  //   },
+  // },
   methods: {
     formValidate() {
       this.formIsValid = true;
@@ -71,11 +73,24 @@ export default {
         this.formIsValid = false;
       }
     },
-    clicked(index, issue) {
+    checkGameResult() {
+      if (this.homeResult > this.awayResult) {
+        this.homeTeamPoints = 3;
+        this.awayTeamPoints = 0;
+      } else if (this.homeResult === this.awayResult) {
+        this.homeTeamPoints = 1;
+        this.awayTeamPoints = 1;
+      } else {
+        this.homeTeamPoints = 0;
+        this.awayTeamPoints = 3;
+      }
+    },
+    submitGameForm(index, issue) {
       this.formValidate();
       if (!this.formIsValid) {
         return;
       }
+      this.checkGameResult();
       // console.log(this.tournamentPairs[index][issue].home.team);
       // console.log(this.tournamentPairs[index][issue].away.team);
       // console.log(this.homeResult);
@@ -92,15 +107,31 @@ export default {
       // this.gameIndex = `${index}${issue}`;
       // console.log(this.gameIsOver);
 
-      const gameResult = {
-        homeTeam: this.tournamentPairs[index][issue].home.team,
-        homeResult: this.homeResult,
-        awayTeam: this.tournamentPairs[index][issue].away.team,
-        awayResult: this.awayResult,
+      const gameResult = [
+        {
+          team: this.tournamentPairs[index][issue].home.team,
+          scoredGoals: Number(this.homeResult),
+          lostGoals: Number(this.awayResult),
+          points: Number(this.homeTeamPoints),
+          homeTeam: this.tournamentPairs[index][issue].home.team,
+          homeResult: this.homeResult,
+        },
+        {
+          team: this.tournamentPairs[index][issue].away.team,
+          scoredGoals: Number(this.awayResult),
+          lostGoals: Number(this.homeResult),
+          points: Number(this.awayTeamPoints),
+          awayTeam: this.tournamentPairs[index][issue].away.team,
+          awayResult: this.awayResult,
+        },
         // gameIsOver: true,
-      };
+      ];
       // this.results.push(gameResult);
       this.$store.dispatch("addGameResult", gameResult);
+
+      // const gameResultToTable = {
+      //   team:
+      // } ;
       // console.log(this.gamesPlayed);
       // console.log(this.awayResult);
       // console.log(this.homeResult);
@@ -165,10 +196,17 @@ export default {
   &__goals {
     // max-width: 5rem;
     padding: 0;
-    margin: 0 0.2rem;
     width: 3.5rem;
     text-align: center;
+    margin-top: 0.2rem;
     // flex: 0 1 auto;
+    &:last-of-type {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (min-width: 700px) {
+      margin: 0 0.2rem;
+    }
   }
 }
 

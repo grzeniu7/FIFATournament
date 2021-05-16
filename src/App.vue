@@ -31,7 +31,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 10px;
-  @media (min-width: 500px) {
+  @media (min-width: 700px) {
     font-size: 1rem;
   }
   @media (min-width: 1600px) {
