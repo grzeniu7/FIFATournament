@@ -1,5 +1,5 @@
 <template>
-  <section class="classification">
+  <section class="classification" v-if="table.length">
     <h2 class="classification__title">Live table</h2>
     <div class="classification__container">
       <div class="classification__description">
@@ -56,14 +56,20 @@
 
 <script>
 export default {
+  data() {
+    return {};
+  },
   computed: {
     table() {
-      return this.$store.getters.tournamentTable;
+      const table = this.$store.getters.tournamentTable;
+      const sortedTable = table.sort((a, b) => {
+        if (a.points === a.points) {
+          return b.goalsBalance - a.goalsBalance;
+        }
+        return b.points - a.points;
+      });
+      return sortedTable;
     },
-  },
-
-  mounted() {
-    console.log(this.table);
   },
 };
 </script>
@@ -81,8 +87,6 @@ export default {
   &__container {
     display: flex;
     justify-content: center;
-    // align-items: center;
-
     @media (min-width: 500px) {
       border-right: none;
       flex-direction: column;
@@ -117,7 +121,7 @@ export default {
     align-items: center;
     padding: 0.2rem;
     border: 0.1rem solid white;
-    height: 3rem;
+    height: 4rem;
     border-right: none;
     &:not(:last-of-type) {
       border-bottom: none;
@@ -128,7 +132,6 @@ export default {
         border-bottom: none;
       }
     }
-
     &-grey {
       background-color: rgba(255, 255, 255, 0.9);
       color: black;
@@ -171,7 +174,6 @@ export default {
   &__key {
     margin: 0.3rem 0.3rem 0 0;
   }
-
   @media (min-width: 300px) {
     font-size: 0.5rem;
   }
