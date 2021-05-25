@@ -4,7 +4,11 @@
       <div class="header__item">
         <h1>Fifa Tournament</h1>
       </div>
-      <div class="header__item"><nav></nav></div>
+      <div class="header__item">
+        <nav>
+          <router-link link to="/game">Zacznij grę!</router-link>
+        </nav>
+      </div>
     </div>
   </header>
 </template>

@@ -60,11 +60,6 @@ export default {
       awayTeamPoints: null,
     };
   },
-  // computed: {
-  //   gamesPlayed() {
-  //     return this.$store.getters.gamesPlayed;
-  //   },
-  // },
   methods: {
     formValidate() {
       this.formIsValid = true;
@@ -91,21 +86,6 @@ export default {
         return;
       }
       this.checkGameResult();
-      // console.log(this.tournamentPairs[index][issue].home.team);
-      // console.log(this.tournamentPairs[index][issue].away.team);
-      // console.log(this.homeResult);
-      // console.log(this.awayResult);
-      // console.log(this.$refs.away.value);
-
-      ////////////////////////       dodawac to ???       ///////////////////////////////
-      // const homeTeamResult = `${this.tournamentPairs[index][issue].home.team}Result`;
-      // const awayTeamResult = `${this.tournamentPairs[index][issue].away.team}Result`;
-      // console.log(homeTeamResult);
-      // console.log(awayTeamResult);
-      ////////////////////////////////////////////////////////////////////////////////////
-      // this.gameIndex = "";
-      // this.gameIndex = `${index}${issue}`;
-      // console.log(this.gameIsOver);
 
       const gameResult = [
         {
@@ -124,49 +104,27 @@ export default {
           awayTeam: this.tournamentPairs[index][issue].away.team,
           awayResult: this.awayResult,
         },
-        // gameIsOver: true,
       ];
-      // this.results.push(gameResult);
       this.$store.dispatch("addGameResult", gameResult);
 
-      // const gameResultToTable = {
-      //   team:
-      // } ;
-      // console.log(this.gamesPlayed);
-      // console.log(this.awayResult);
-      // console.log(this.homeResult);
-
       this.gameIsOver = true;
-      // this.homeResult = null;
-      // this.awayResult = null;
-
-      // console.log(this.awayResult);
-      // console.log(this.homeResult);
-      // console.log(this.results);
     },
   },
-  // mounted() {
-  //   console.log(this.issue);
-  // },
 };
 </script>
 
 <style lang="scss" scoped>
 .form {
-  // background-color: red;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  //   // width: 100%;
   &__container {
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    // margin-top: 0.5rem;
-    // background-color: pink;
     padding: 0.5rem;
     border: 0.1rem solid white;
     @media (min-width: 700px) {
@@ -187,19 +145,15 @@ export default {
     }
   }
   &__team {
-    // flex: ;
-    // background-color: blue;
     &-reversed {
       order: 1;
     }
   }
   &__goals {
-    // max-width: 5rem;
     padding: 0;
     width: 3.5rem;
     text-align: center;
     margin-top: 0.2rem;
-    // flex: 0 1 auto;
     &:last-of-type {
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;

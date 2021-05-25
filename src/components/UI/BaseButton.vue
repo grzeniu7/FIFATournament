@@ -52,7 +52,7 @@ export default {
   &:active {
     background-color: rgba(255, 255, 255, 0.904);
     color: black;
-    outline: none; //Sprobowac znalezc inne rozwiazanie - uzytkownicy uzywajacy klawiatury, nawigujac tabem nie beda mieli podswietlonego tego przycisku jako aktywnego -> Problem z chromem?
+    outline: none;
   }
 }
 </style>

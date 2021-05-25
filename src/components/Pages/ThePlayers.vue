@@ -22,15 +22,13 @@ export default {
     return {
       competitors: [],
       competitorsExist: false,
+      playersListIsValid: true,
     };
   },
   methods: {
     getData(player) {
-      // console.log(player);
       this.competitors.push(player);
       this.competitorsExist = true;
-      // console.log(this.competitors);
-      // console.log(this.competitors);
     },
     resetPlayersList() {
       this.competitors = [];
@@ -40,23 +38,34 @@ export default {
       console.log(index);
       this.competitors.splice(index, 1);
     },
+    validatePlayersList() {
+      if (this.competitors.length === 0) {
+        this.playersListIsValid = false;
+        alert("Players list can't be empty");
+      } else if (this.competitors.length % 2 !== 0) {
+        this.playersListIsValid = false;
+        alert("Number of players must be even");
+      } else {
+        this.playersListIsValid = true;
+      }
+    },
     addPlayers() {
       this.$store.dispatch("addPlayersToState", this.competitors);
     },
-    // test() {
-    //   console.log(this.testing);         //store testing
-    // },
   },
   computed: {
     testing() {
       return this.$store.getters.testing;
     },
   },
-  // mounted() {
-  //   this.test();
-  // },
   beforeUnmount() {
     this.addPlayers();
+  },
+  beforeRouteLeave(_, __, next) {
+    this.validatePlayersList();
+    if (this.playersListIsValid) {
+      next();
+    }
   },
 };
 </script>

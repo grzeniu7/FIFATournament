@@ -1,8 +1,8 @@
 <template>
   <section class="players">
     <div class="players__table">
-      <h3 class="players__description">Gracz</h3>
-      <h3 class="players__description">Drużyna</h3>
+      <h3 class="players__description">Player</h3>
+      <h3 class="players__description">Team</h3>
     </div>
     <ul>
       <li
@@ -12,7 +12,7 @@
         @click="deletePlayer(index)"
       >
         <div class="players__delete">
-          <p>Usuń gracza</p>
+          <p>Delete player</p>
         </div>
         <p class="players__item">{{ competitor.name }}</p>
         <p class="players__item">{{ competitor.team }}</p>
@@ -20,11 +20,11 @@
     </ul>
     <div class="players__buttons">
       <div class="players__button">
-        <base-button link to="/game">Zacznij grę!</base-button>
+        <base-button link to="/game">Start the game!</base-button>
       </div>
       <div class="players__button">
         <base-button type="button" :click="resetList"
-          >Resetuj listę graczy</base-button
+          >Reset players list</base-button
         >
       </div>
     </div>
@@ -37,7 +37,6 @@ export default {
   emits: ["delete-player"],
   methods: {
     deletePlayer(index) {
-      // console.log(event.target); ///////////CHUJ NIE DZIAŁĄ
       this.$emit("delete-player", index);
     },
   },
@@ -69,9 +68,6 @@ export default {
     z-index: 1;
     transform: translateY(4.92rem);
   }
-  // &__list:hover &__item {
-  //   opacity: 0;
-  // }
   &__description {
     flex: 1;
     padding: 1rem;
@@ -88,7 +84,6 @@ export default {
     padding: 1rem;
     border: 0.1rem solid white;
     border-top: none;
-    // transition: all 0.5s ease-in;
   }
   &__delete {
     position: absolute;

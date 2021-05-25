@@ -4,45 +4,45 @@
       class="form__container"
       :class="{ form__invalid: !playerName.isValid }"
     >
-      <label for="name" class="form__item">Wpisz nazwę gracza:</label>
+      <label for="name" class="form__item">Player name:</label>
       <input
         :class="{ 'form__input--invalid': !playerName.isValid }"
         class="form__item form__input"
         type="text"
         name="name"
         id="name"
-        placeholder="Gracz"
+        placeholder="Player"
         v-model.trim="playerName.val"
         maxlength="15"
         @blur="checkValue"
       />
     </div>
     <p class="form__info" v-if="!playerName.isValid">
-      Nazwa gracza nie może być pusta, dłuższa niz 15 znaków oraz zawierać cyfr
-      i polskich znakow
+      Player name can't be empty, longer than 15 characters and contain numbers
+      or special characters
     </p>
     <div
       class="form__container"
       :class="{ form__invalid: !playerTeam.isValid }"
     >
-      <label for="team" class="form__item">Wpisz nazwę drużyny:</label>
+      <label for="team" class="form__item">Team:</label>
       <input
         :class="{ 'form__input--invalid': !playerTeam.isValid }"
         class="form__item form__input"
         type="text"
         name="team"
         id="team"
-        placeholder="Drużyna"
+        placeholder="Team"
         v-model.trim="playerTeam.val"
         maxlength="15"
         @blur="checkValue"
       />
     </div>
     <p class="form__info" v-if="!playerTeam.isValid">
-      Nazwa drużyny nie może być pusta, dłuższa niz 15 znaków oraz zawierać cyfr
-      i polskich znakow
+      Team name can't be empty, longer than 15 characters and contain numbers or
+      special characters
     </p>
-    <base-button type="submit">Dodaj gracza !</base-button>
+    <base-button type="submit">Add player !</base-button>
   </form>
 </template>
 
@@ -62,14 +62,6 @@ export default {
       },
       formIsValid: true,
       error: false,
-      // competitors: [
-      // { id: 1, name: "Grzechu", team: "Real" },
-      // { id: 2, name: "Doncia", team: "Barka" },
-      // { id: 3, name: "Luki", team: "Ten tempy chuj za Arsenalem" },
-      // { id: 4, name: "Mucha", team: "Chuj wie" },
-      // { id: 5, name: "Kacper", team: "Zwinny jak polamany wengosz" },
-      // { id: 5, name: "Mosiu", team: "Haczy nosem o poprzeczke" },
-      // ],
     };
   },
   methods: {
@@ -104,10 +96,7 @@ export default {
         name: this.playerName.val,
         team: this.playerTeam.val,
       };
-      // this.competitors.push(player);
-      // console.log(player);
       this.$emit("send-data", player);
-      // this.competitors = [];
       this.playerName.val = "";
       this.playerTeam.val = "";
     },
