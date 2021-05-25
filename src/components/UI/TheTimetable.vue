@@ -1,4 +1,10 @@
 <template>
+  <div v-if="tournamentPairs.length === 0" class="alert">
+    <p>
+      To play the game add some players in
+      <router-link to="/" class="alert__link">here</router-link>
+    </p>
+  </div>
   <ul :key="round" v-for="(round, index) in tournamentPairs" class="timetable">
     <p>Runda {{ index + 1 }}</p>
     <li
@@ -73,7 +79,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.alert {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  &__link {
+    text-decoration: none;
+    color: turquoise;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: translateX(0.5rem);
+    }
+  }
+}
 .timetable {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.7);
   &__item {

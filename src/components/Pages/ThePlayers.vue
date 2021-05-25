@@ -61,9 +61,13 @@ export default {
   beforeUnmount() {
     this.addPlayers();
   },
-  beforeRouteLeave(_, __, next) {
-    this.validatePlayersList();
-    if (this.playersListIsValid) {
+  beforeRouteLeave(to, _, next) {
+    if (to.fullPath === "/game") {
+      this.validatePlayersList();
+      if (this.playersListIsValid) {
+        next();
+      }
+    } else {
       next();
     }
   },

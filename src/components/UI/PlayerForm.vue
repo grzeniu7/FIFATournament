@@ -123,7 +123,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-  margin: 2rem 0;
+  margin: 4rem 0;
   padding: 20px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.7);

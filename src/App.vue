@@ -1,9 +1,7 @@
 <template>
-  <div class="background">
-    <the-header></the-header>
-    <router-view></router-view>
-    <the-footer></the-footer>
-  </div>
+  <the-header></the-header>
+  <router-view></router-view>
+  <the-footer></the-footer>
 </template>
 
 <script>
@@ -33,17 +31,12 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 10px;
-  @media (min-width: 700px) {
+  @media (min-width: 500px) {
     font-size: 1rem;
   }
   @media (min-width: 1600px) {
     font-size: 1.2rem;
   }
   color: white;
-}
-
-.background {
-  min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 </style>

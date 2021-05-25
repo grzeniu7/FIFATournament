@@ -79,6 +79,7 @@ export default {
   text-align: center;
   font-size: 0.3rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.7);
   &__title {
