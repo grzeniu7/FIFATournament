@@ -44,12 +44,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // margin: 0 auto;
-  margin-top: 10rem;
+  margin-top: 4rem;
   background-color: rgba(0, 0, 0, 0.8);
-  // height: 100vh;
-  // display: block;
-  // font-size: 20rem;
   &__container {
     display: flex;
     flex-direction: column;
